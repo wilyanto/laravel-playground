@@ -28,7 +28,7 @@ I make this repository for learning purpose and proof of concept for certain fea
 4. **[phpMyAdmin](https://hub.docker.com/_/phpmyadmin)** (latest)
 5. **[Mailpit](https://hub.docker.com/r/axllent/mailpit)** (latest)
 
-## Main project usage
+## Main Project Usage
 
 1. Access http://localhost
 
