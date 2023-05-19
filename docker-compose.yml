@@ -25,6 +25,7 @@ services:
         depends_on:
             - mysql
             - redis
+            - mailpit
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
@@ -67,13 +68,20 @@ services:
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         links:
-            - mysql:mysql
+            - 'mysql:mysql'
         ports:
-            - 8080:80
+            - '8080:80'
         environment:
-            MYSQL_USERNAME: "${DB_USERNAME}"
-            MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+            MYSQL_USERNAME: '${DB_USERNAME}'
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
             PMA_HOST: mysql
+        networks:
+            - sail
+    mailpit:
+        image: 'axllent/mailpit:latest'
+        ports:
+            - '${FORWARD_MAILPIT_PORT:-1025}:1025'
+            - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
         networks:
             - sail
 networks:
